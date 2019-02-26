@@ -2,8 +2,8 @@ import ms from 'ms';
 
 
 /**
- * Returns a Promise that resolves after the provided delay. Delay
- * may be expressed as a number of milliseconds or as a string.
+ * Returns a Promise that resolves after the provided delay. Delay may be
+ * expressed as a number (of milliseconds) or as a string.
  */
 export default async function sleep<T = any>(timeout: string | number, value?: T) {
   const parsedTimeout = typeof timeout === 'number' ? timeout : ms(timeout);
@@ -17,7 +17,8 @@ export default async function sleep<T = any>(timeout: string | number, value?: T
 
 
 /**
- * Returns a Promise that rejects after the provided timeout.
+ * Returns a Promise that rejects after the provided timeout. Delay may be
+ * expressed as a number (of milliseconds) or as a string.
  */
 export async function rejectAfter<T = any>(timeout: string | number, value?: T) {
   const parsedTimeout = typeof timeout === 'number' ? timeout : ms(timeout);
