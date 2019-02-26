@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# 1.0.0 (2019-02-26)
+
+
+### Features
+
+* Add sleep. ([bbe09dd](https://github.com/darkobits/sleep/commit/bbe09dd))
+
+
+
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/darkobits/nlink/compare/v3.1.0...v3.1.1) (2019-01-11)
 
