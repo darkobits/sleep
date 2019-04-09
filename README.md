@@ -10,6 +10,8 @@
   <a href="https://github.com/sindresorhus/xo"><img src="https://img.shields.io/badge/code_style-XO-e271a5.svg?style=flat-square"></a>
 </p>
 
+Useful for developing and debugging async logic.
+
 # Install
 
 ```
@@ -28,6 +30,9 @@ async function main() {
   // Or, wait for 5 seconds:
   await sleep('5 seconds');
 
+  // Or, wait for 5 seconds:
+  await sleep('5s');
+
   // Or, wait for 5 seconds and resolve with a value:
   const foo = await sleep('5 seconds', 'foo');
 }
@@ -43,9 +48,12 @@ async function main() {
   // Or, wait for 5 seconds, then reject:
   await rejectAfter('5 seconds');
 
+  // Or, wait for 5 seconds, then reject:
+  await rejectAfter('5s');
+
   try {
     // Or, wait for 5 seconds and reject with a value:
-    const foo = await sleep('5 seconds', new Error('blearg!'));
+    const foo = await rejectAfter('5 seconds', new Error('blearg!'));
   } catch (err) {
     console.log(err.message) //=> 'blearg!'
   }
