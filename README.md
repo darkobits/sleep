@@ -60,6 +60,10 @@ async function main() {
 }
 ```
 
+## Caveats
+
+The maximum value that can be passed to `setTimeout` is `2147483647`; the maximum value that can be represented in a signed 32-bit integer. If a value greater than this is used, Node will issue a warning and set the value to `1` instead. Therefore, if you try to `sleep(Infinity)` (or anything over the maximum allowed value) this will be corrected to `sleep(2147483647)`, which works out to about 25 days. If you need your program to wait for longer than that, please message me, because I'd really like to know what you're building.
+
 ## &nbsp;
 <p align="center">
   <br>
