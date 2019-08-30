@@ -10,7 +10,8 @@ const MAX_SAFE_VALUE = 2147483647;
 
 
 /**
- * Accepts a string (ie: '5s', '20 seconds') and returns a number.
+ * Accepts a string or a number (ie: '5s', '20 seconds', 5000) and returns a
+ * number.
  */
 function parseTime(time: string | number): number {
   const parsedTime = typeof time === 'number' ? time : ms(time);
