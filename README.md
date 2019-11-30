@@ -9,9 +9,7 @@
   <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/conventional%20commits-1.0.0-FB5E85.svg?style=flat-square"></a>
 </p>
 
-> Sometimes your app just needs to take a break.
-
-Useful for developing and debugging async logic.
+Utility for developing and debugging async logic.
 
 # Install
 
@@ -39,36 +37,34 @@ async function main() {
 }
 ```
 
+For convenience, this package also exports `rejectAfter`, which will wait the
+indicated time and then reject, optionally with a value.
+
 ```ts
 import {rejectAfter} from '@darkobits/sleep';
 
 async function main() {
-  // Wait for 5 seconds, then reject:
-  await rejectAfter(5000);
-
-  // Or, wait for 5 seconds, then reject:
-  await rejectAfter('5 seconds');
-
-  // Or, wait for 5 seconds, then reject:
-  await rejectAfter('5s');
-
   try {
-    // Or, wait for 5 seconds and reject with a value:
-    const foo = await rejectAfter('5 seconds', new Error('blearg!'));
+    // Or, wait for 5 seconds and reject with an Error:
+    await rejectAfter('5 seconds', new Error('Barnacles!'));
   } catch (err) {
-    console.log(err.message) //=> 'blearg!'
+    console.log(err.message) //=> 'Barnacles!'
   }
 }
 ```
 
 ## Caveats
 
-The maximum value that can be passed to `setTimeout` is `2147483647`; the maximum value that can be represented in a signed 32-bit integer. If a value greater than this is used, Node will issue a warning and set the value to `1` instead. Therefore, if you try to `sleep(Infinity)` (or anything over the maximum allowed value) this will be corrected to `sleep(2147483647)`, which works out to about 25 days.
+The maximum value that can be passed to `setTimeout` is `2147483647`; the
+maximum value that can be represented in a signed 32-bit integer. If a value
+greater than this is used, Node will issue a warning and set the value to `1`
+instead. Therefore, if you try to `sleep(Infinity)` (or anything over the
+maximum allowed value) this will be corrected to `sleep(2147483647)`, which
+works out to about 25 days.
 
-If you need your program to wait for longer than that, please get in touch with me, because I'd _really_ like to know what you're building.
+If you need your program to wait for longer than that, please get in touch with
+me, because I'd _really_ like to know what you're building.
 
-## &nbsp;
-<p align="center">
-  <br>
-  <img width="22" height="22" src="https://cloud.githubusercontent.com/assets/441546/25318539/db2f4cf2-2845-11e7-8e10-ef97d91cd538.png">
-</p>
+<a href="#top">
+  <img src="https://user-images.githubusercontent.com/441546/69777002-41ac7380-1153-11ea-85a4-88184f8c9975.png" style="max-width: 100%;">
+</a>
