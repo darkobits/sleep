@@ -31,7 +31,7 @@ function parseTime(time: string | number): number {
 export default async function sleep<T = any>(timeout: string | number, value?: T) {
   return new Promise<T>(resolve => {
     setTimeout(() => {
-      resolve(value);
+      resolve(value as T);
     }, parseTime(timeout));
   });
 }
@@ -42,9 +42,9 @@ export default async function sleep<T = any>(timeout: string | number, value?: T
  * expressed as a number (of milliseconds) or as a string.
  */
 export async function rejectAfter<T = any>(timeout: string | number, value?: T) {
-  return new Promise<T>((_, reject) => {
+  return new Promise<T>((resolve, reject) => {
     setTimeout(() => {
-      reject(value);
+      reject(value as T);
     }, parseTime(timeout));
   });
 }

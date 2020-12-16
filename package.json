@@ -2,7 +2,7 @@
   "name": "@darkobits/sleep",
   "version": "1.0.2",
   "author": "darkobits",
-  "description": "Sometimes your app just needs to take a break.",
+  "description": "Async wait utility.",
   "license": "WTFPL",
   "repository": {
     "type": "git",
@@ -20,9 +20,6 @@
   ],
   "main": "dist/sleep.js",
   "scripts": {
-    "build": "nps build",
-    "test": "nps test",
-    "bump": "nps bump",
     "prepare": "nps prepare",
     "help": "nps --scripts"
   },
@@ -30,9 +27,7 @@
     "ms": "^2.1.2"
   },
   "devDependencies": {
-    "@darkobits/ts-unified": "^3.2.4",
-    "@types/jest": "^24.0.23",
-    "@types/ms": "^0.7.31",
-    "@types/node": "^12.12.14"
+    "@darkobits/ts": "^0.2.0",
+    "@types/ms": "^0.7.31"
   }
 }

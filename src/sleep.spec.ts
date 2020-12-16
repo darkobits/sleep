@@ -1,4 +1,4 @@
-import sleep, {rejectAfter} from './sleep';
+import sleep, { rejectAfter } from './sleep';
 
 jest.useFakeTimers();
 
