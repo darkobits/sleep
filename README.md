@@ -1,12 +1,12 @@
 <a href="#top" id="top">
-  <img src="https://user-images.githubusercontent.com/441546/53388255-3798e280-393f-11e9-8433-24839585d7bf.png" style="max-width: 100%;">
+  <img src="https://user-images.githubusercontent.com/441546/102317184-f7e42600-3f2b-11eb-89c4-908643f38f5c.png" style="max-width: 100%;">
 </a>
 <p align="center">
   <a href="https://www.npmjs.com/package/@darkobits/sleep"><img src="https://img.shields.io/npm/v/@darkobits/sleep.svg?style=flat-square"></a>
-  <a href="https://github.com/darkobits/sleep/actions"><img src="https://img.shields.io/endpoint?url=https://aws.frontlawn.net/ga-shields/darkobits/sleep&style=flat-square"></a>
+  <a href="https://travis-ci.com/darkobits/sleep"><img src="https://img.shields.io/travis/com/darkobits/sleep/master?style=flat-square"></a>
   <a href="https://www.codacy.com/app/darkobits/sleep"><img src="https://img.shields.io/codacy/coverage/7c3df85cd6264b59a7a39a99be6599f7.svg?style=flat-square"></a>
   <a href="https://david-dm.org/darkobits/sleep"><img src="https://img.shields.io/david/darkobits/sleep.svg?style=flat-square"></a>
-  <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/conventional%20commits-1.0.0-FB5E85.svg?style=flat-square"></a>
+  <a href="https://github.com/conventional-changelog/standard-version"><img src="https://img.shields.io/badge/conventional%20commits-1.0.0-027dc6.svg?style=flat-square"></a>
 </p>
 
 Utility for developing and debugging async logic.
@@ -66,5 +66,5 @@ If you need your program to wait for longer than that, please get in touch with
 me, because I'd _really_ like to know what you're building.
 
 <a href="#top">
-  <img src="https://user-images.githubusercontent.com/441546/69777002-41ac7380-1153-11ea-85a4-88184f8c9975.png" style="max-width: 100%;">
+  <img src="https://user-images.githubusercontent.com/441546/102315151-835bb800-3f28-11eb-8cf4-8bd74b94ddc3.png" style="max-width: 100%;">
 </a>
