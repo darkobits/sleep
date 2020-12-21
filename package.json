@@ -1,6 +1,6 @@
 {
   "name": "@darkobits/sleep",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "darkobits",
   "description": "Async wait utility.",
   "license": "WTFPL",

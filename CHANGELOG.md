@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/darkobits/sleep/compare/v1.0.3...v1.0.4) (2020-12-21)
+
+
+### 🏗 Chores
+
+* Update dependencies. ([e8891a4](https://github.com/darkobits/sleep/commit/e8891a41648d9fe7fcc48a174acf6ba74c6a7088))
+
 ### [1.0.3](https://github.com/darkobits/sleep/compare/v1.0.2...v1.0.3) (2020-12-16)
 
 
