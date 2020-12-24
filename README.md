@@ -3,8 +3,8 @@
 </a>
 <p align="center">
   <a href="https://www.npmjs.com/package/@darkobits/sleep"><img src="https://img.shields.io/npm/v/@darkobits/sleep.svg?style=flat-square"></a>
-  <a href="https://travis-ci.com/darkobits/sleep"><img src="https://img.shields.io/travis/com/darkobits/sleep/master?style=flat-square"></a>
-  <a href="https://www.codacy.com/app/darkobits/sleep"><img src="https://img.shields.io/codacy/coverage/7c3df85cd6264b59a7a39a99be6599f7.svg?style=flat-square"></a>
+  <a href="https://github.com/darkobits/sleep/actions?query=workflow%3ACI"><img src="https://img.shields.io/github/workflow/status/darkobits/sleep/CI/master?style=flat-square"></a>
+  <a href="https://app.codecov.io/gh/darkobits/sleep/branch/master"><img src="https://img.shields.io/codecov/c/github/darkobits/sleep/master?style=flat-square"></a>
   <a href="https://david-dm.org/darkobits/sleep"><img src="https://img.shields.io/david/darkobits/sleep.svg?style=flat-square"></a>
   <a href="https://github.com/conventional-changelog/standard-version"><img src="https://img.shields.io/badge/conventional%20commits-1.0.0-027dc6.svg?style=flat-square"></a>
 </p>
@@ -65,6 +65,7 @@ works out to about 25 days.
 If you need your program to wait for longer than that, please get in touch with
 me, because I'd _really_ like to know what you're building.
 
+<br />
 <a href="#top">
   <img src="https://user-images.githubusercontent.com/441546/102315151-835bb800-3f28-11eb-8cf4-8bd74b94ddc3.png" style="max-width: 100%;">
 </a>
