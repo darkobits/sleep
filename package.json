@@ -27,7 +27,7 @@
     "ms": "^2.1.2"
   },
   "devDependencies": {
-    "@darkobits/ts": "^0.2.2",
+    "@darkobits/ts": "^0.3.3",
     "@types/ms": "^0.7.31"
   }
 }
