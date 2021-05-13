@@ -5,8 +5,8 @@
   <a href="https://www.npmjs.com/package/@darkobits/sleep"><img src="https://img.shields.io/npm/v/@darkobits/sleep.svg?style=flat-square"></a>
   <a href="https://github.com/darkobits/sleep/actions?query=workflow%3ACI"><img src="https://img.shields.io/github/workflow/status/darkobits/sleep/CI/master?style=flat-square"></a>
   <a href="https://app.codecov.io/gh/darkobits/sleep/branch/master"><img src="https://img.shields.io/codecov/c/github/darkobits/sleep/master?style=flat-square"></a>
-  <a href="https://david-dm.org/darkobits/sleep"><img src="https://img.shields.io/david/darkobits/sleep.svg?style=flat-square"></a>
-  <a href="https://github.com/conventional-changelog/standard-version"><img src="https://img.shields.io/badge/conventional%20commits-1.0.0-027dc6.svg?style=flat-square"></a>
+  <a href="https://depfu.com/github/darkobits/sleep"><img src="https://img.shields.io/depfu/darkobits/sleep?style=flat-square"></a>
+  <a href="https://conventionalcommits.org"><img src="https://img.shields.io/static/v1?label=commits&message=conventional&style=flat-square&color=398AFB"></a>
 </p>
 
 Utility for developing and debugging async logic.
@@ -67,5 +67,5 @@ me, because I'd _really_ like to know what you're building.
 
 <br />
 <a href="#top">
-  <img src="https://user-images.githubusercontent.com/441546/102315151-835bb800-3f28-11eb-8cf4-8bd74b94ddc3.png" style="max-width: 100%;">
+  <img src="https://user-images.githubusercontent.com/441546/118062198-4ff04e80-b34b-11eb-87f3-406a345d5526.png" style="max-width: 100%;">
 </a>
