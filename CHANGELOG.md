@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/darkobits/sleep/compare/v2.0.0...v2.0.1) (2022-02-11)
+
+
+### 🐞 Bug Fixes
+
+* Update Babel config. ([b556e2a](https://github.com/darkobits/sleep/commit/b556e2aade88e146723c5fbe3114b76a736534da))
+
 ## [2.0.0](https://github.com/darkobits/sleep/compare/v1.0.4...v2.0.0) (2022-02-11)
 
 
