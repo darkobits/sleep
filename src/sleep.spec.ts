@@ -2,7 +2,7 @@ import sleep, { rejectAfter } from './sleep';
 
 jest.useFakeTimers();
 
-const MAX_SAFE_VALUE = 2147483647;
+const MAX_SAFE_VALUE = 2_147_483_647;
 const DELAY = 5000;
 const STRING_DELAY = '5 seconds';
 

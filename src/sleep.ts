@@ -6,7 +6,7 @@ import ms from 'ms';
  * value greater than this is passed to `setTimeout`, Node will issue a warning
  * and set the timeout value to 1ms.
  */
-const MAX_SAFE_VALUE = 2147483647;
+const MAX_SAFE_VALUE = 2_147_483_647;
 
 
 /**
