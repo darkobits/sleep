@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/darkobits/sleep/compare/v2.0.1...v2.1.0) (2022-08-09)
+
+
+### 🏗 Chores
+
+* **deps:** Update dependencies, metadata. ([b5b7038](https://github.com/darkobits/sleep/commit/b5b7038909a00ef3397b5be61b1ec90d30414323))
+
+
+### ✨ Features
+
+* Add `sleep.sync`. ([53c689a](https://github.com/darkobits/sleep/commit/53c689af79d8d9185edeeebc8da62afce49c00dc))
+
+
+### 📖 Documentation
+
+* Update README. ([1ea139c](https://github.com/darkobits/sleep/commit/1ea139c3474b5cae97f887b6d8a8521e14a5c72e))
+
 ### [2.0.1](https://github.com/darkobits/sleep/compare/v2.0.0...v2.0.1) (2022-02-11)
 
 
