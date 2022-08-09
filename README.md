@@ -9,7 +9,7 @@
   <a href="https://conventionalcommits.org"><img src="https://img.shields.io/static/v1?label=commits&message=conventional&style=flat-square&color=398AFB"></a>
 </p>
 
-Utility for developing and debugging async logic.
+This package provides a means to pause JavaScript execution.
 
 # Install
 
@@ -18,6 +18,15 @@ npm install @darkobits/sleep
 ```
 
 # Use
+
+The most common way to use this tool is asynchronously using `async` / `await`. This will pause the
+execution of code within the current function without blocking the main thread.
+
+If a second parameter is provided, the following rules will be followed:
+
+1. If the value is an instance of `Error` (including anything that subclasses it), reject with the error
+   after the provided delay.
+2. If any other value is provided, resolve after the provided delay with the value.
 
 ```ts
 import sleep from '@darkobits/sleep';
@@ -34,36 +43,63 @@ async function main() {
 
   // Or, wait for 5 seconds and resolve with a value:
   const foo = await sleep('5 seconds', 'foo');
+
+  // Or, wait for 5 seconds and reject with an error:
+  try {
+    await sleep('5s', new Error('Barnacles!'));
+  } catch (err) {
+    console.error(err.message) // 'Barnacles!'
+  }
 }
 ```
 
-For convenience, this package also exports `rejectAfter`, which will wait the
-indicated time and then reject, optionally with a value.
+## Synchronous Usage
+
+> **Warning**
+>
+> If you need to pause execution of the entire program, please consider the following:
+> 1. You probably don't need to pause execution of the entire program.
+> 2. You probably don't want to pause execution of the entire program.
+> 3. You shouldn't pause execution of the entire program.
+
+That said, this package provides a means to do so without spiking CPU usage, as is the case with `while`
+loops. To use it, invoke `sleep.sync`, which takes the same arguments as its async variant, but does not
+return a promise.
 
 ```ts
-import {rejectAfter} from '@darkobits/sleep';
+import sleep from '@darkobits/sleep';
 
-async function main() {
+function main() {
+  // Wait for 5 seconds:
+  sleep.sync(5000);
+
+  // Or, wait for 5 seconds:
+  sleep.sync('5 seconds');
+
+  // Or, wait for 5 seconds:
+  sleep.sync('5s');
+
+  // Or, wait for 5 seconds and return a value:
+  const foo = sleep.sync('5 seconds', 'foo');
+
+  // Or, wait for 5 seconds and throw an error:
   try {
-    // Or, wait for 5 seconds and reject with an Error:
-    await rejectAfter('5 seconds', new Error('Barnacles!'));
+    sleep.sync('5s', new Error('Barnacles!'));
   } catch (err) {
-    console.log(err.message) //=> 'Barnacles!'
+    console.error(err.message) // 'Barnacles!'
   }
 }
 ```
 
 ## Caveats
 
-The maximum value that can be passed to `setTimeout` is `2147483647`; the
-maximum value that can be represented in a signed 32-bit integer. If a value
-greater than this is used, Node will issue a warning and set the value to `1`
-instead. Therefore, if you try to `sleep(Infinity)` (or anything over the
-maximum allowed value) this will be corrected to `sleep(2147483647)`, which
-works out to about 25 days.
-
-If you need your program to wait for longer than that, please get in touch with
-me, because I'd _really_ like to know what you're building.
+The maximum timeout value that can be passed to `setTimeout` is `2_147_483_647` milliseconds; the
+maximum value that can be represented in a signed 32-bit integer. Passing a value larger than this will
+cause a `TimeoutOverflowWarning` and the timeout will be set to `1`. This value turns out to be just
+under 25 days, and is therefore far longer than any reasonable use should require. However, since this
+is primarily a tool for debugging and development, any timeout value that exceeds the maximum will be
+coerced to the maximum value so that things like `sleep(Infinity)` will not violate the
+[Principle of Least Astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment).
 
 <br />
 <a href="#top">
