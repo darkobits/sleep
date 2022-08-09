@@ -10,11 +10,12 @@
     "url": "https://github.com/darkobits/sleep.git"
   },
   "keywords": [
-    "sleep",
-    "wait",
     "async",
-    "nap",
-    "zzz"
+    "asynchronous",
+    "sleep",
+    "sync",
+    "synchronous",
+    "wait"
   ],
   "files": [
     "dist"
@@ -22,13 +23,16 @@
   "main": "dist/sleep.js",
   "scripts": {
     "prepare": "nr prepare",
+    "test": "nr test",
     "help": "nr --scripts"
   },
   "dependencies": {
     "ms": "^2.1.3"
   },
   "devDependencies": {
-    "@darkobits/ts": "^0.8.23",
-    "@types/ms": "^0.7.31"
+    "@darkobits/log": "^2.0.0-beta.16",
+    "@darkobits/ts": "^0.10.7-beta.4",
+    "@types/ms": "^0.7.31",
+    "expect-type": "^0.13.0"
   }
 }
