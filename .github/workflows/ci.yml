@@ -4,35 +4,32 @@ on:
   - pull_request
 env:
   FORCE_COLOR: 3
+concurrency:
+  # Cancel concurrent runs for the same ref...
+  group: ${{ github.ref }}
+  # ... unless we're on master. This way, we can more easily figure out which
+  # commit broke it. Replace with `true` to always cancel in-progress jobs.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
 jobs:
-  ci-cd:
-    name: CI/CD
+  ci:
+    name: CI
     runs-on: ubuntu-latest
+    if: github.event.ref_type != 'tag'
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
-
-      - name: Clone Repository
+      - name: Clone
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Set Up Node
+      - name: Prepare
         uses: actions/setup-node@v2
         with:
           node-version: 16
           cache: npm
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Build Project
+      - name: Install
+        run: npm clean-install
+      - name: Build
         run: npx nr build
-
-      - name: Run Unit Tests
-        run: npx nr test.coverage
-
-      - name: Upload Coverage Report
-        run: bash <(curl -s https://codecov.io/bash)
+      - name: Test
+        run: |
+          npx nr test.coverage
+          bash <(curl -s https://codecov.io/bash)

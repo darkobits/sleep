@@ -12,6 +12,22 @@ const ERR = new Error('error');
 
 type UnwrapPromise<P> = P extends Promise<infer T> ? T : P;
 
+
+/**
+ * Mocks a value and returns a cleanup function that restores the original
+ * value.
+ */
+function mock<O extends object, K extends keyof O>(obj: O, key: K, mock?: any) {
+  const value = Reflect.get(obj, key);
+
+  Object.defineProperty(obj, key, { value: mock, configurable: true });
+
+  return () => {
+    Object.defineProperty(obj, key, { value, configurable: true });
+  };
+}
+
+
 describe('sleep', () => {
   beforeAll(() => {
     jest.useFakeTimers();
@@ -106,6 +122,62 @@ describe('sleep', () => {
 // Note: Jest appears to be mocking Atomics.wait so as to make them time-out
 // immediately, so we don't need to interact with timers here.
 describe('sleep.sync', () => {
+  describe('handling unsupported environments', () => {
+    let restore: () => void;
+
+    describe('when Atomics is unavailable', () => {
+      beforeEach(() => {
+        restore = mock(globalThis, 'Atomics');
+      });
+
+      it('should throw', () => {
+        expect(() => {
+          sleep.sync('10 seconds');
+        }).toThrow(/the atomics api is not available/gi);
+      });
+    });
+
+    describe('when Atomics.wait is unavailable', () => {
+      beforeEach(() => {
+        restore = mock(Atomics, 'wait');
+      });
+
+      it('should throw', () => {
+        expect(() => {
+          sleep.sync('10 seconds');
+        }).toThrow(/atomics.wait is not available/gi);
+      });
+    });
+
+    describe('when Int32Array is unavailable', () => {
+      beforeEach(() => {
+        restore = mock(globalThis, 'Int32Array');
+      });
+
+      it('should throw', () => {
+        expect(() => {
+          sleep.sync('10 seconds');
+        }).toThrow(/int32array is not available/gi);
+      });
+    });
+
+    describe('when SharedArrayBuffer is unavailable', () => {
+      beforeEach(() => {
+        restore = mock(globalThis, 'SharedArrayBuffer');
+      });
+
+      it('should throw', () => {
+        expect(() => {
+          sleep.sync('10 seconds');
+        }).toThrow(/sharedarraybuffer is not available/gi);
+      });
+    });
+
+    afterEach(() => {
+      if (typeof restore === 'function') restore();
+    });
+  });
+
   describe('return / throw values', () => {
     describe('when provided a non-Error', () => {
       it('should return the value after the provided delay', () => {

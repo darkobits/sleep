@@ -2,6 +2,12 @@ import ms from 'ms';
 
 
 /**
+ * Coerces Errors to `never`.
+ */
+export type FinalValue<V> = V extends Error ? never : V;
+
+
+/**
  * @private
  *
  * Largest number that can be represented by a signed 32-bit integer. If any
@@ -9,16 +15,6 @@ import ms from 'ms';
  * and set the timeout value to 1ms.
  */
 const MAX_SAFE_VALUE = 2_147_483_647;
-
-
-/**
- * @private
- *
- * Array used by Atomics.wait in sleep.sync.
- *
- * Note: The minimum byte length for this type of array is 4.
- */
-const TYPED_ARRAY = new Int32Array(new SharedArrayBuffer(4));
 
 
 /**
@@ -42,9 +38,6 @@ function parseTime(time: string | number): number {
 }
 
 
-export type FinalValue<V> = V extends Error ? never : V;
-
-
 /**
  * Returns a Promise that settles after the provided `delay`, which may be
  * expressed as a number (of milliseconds) or as a string ('10 seconds').
@@ -53,13 +46,13 @@ export type FinalValue<V> = V extends Error ? never : V;
  * reject with the error. If any other value was provided, the Promise will
  * resolve with the value.
  */
-export default async function sleep<T = any>(delay: string | number, value?: T): Promise<FinalValue<T>> {
+export default async function sleep<V = any>(delay: string | number, value?: V) {
   if (value instanceof Error) {
     await sleep(delay);
     throw value;
   }
 
-  return new Promise(resolve => {
+  return new Promise<FinalValue<V>>(resolve => {
     setTimeout(() => resolve(value as any), parseTime(delay));
   });
 }
@@ -67,7 +60,8 @@ export default async function sleep<T = any>(delay: string | number, value?: T):
 
 /**
  * **Warning: This function will block the JavaScript thread in which is was
- * called and should therefore be used with extreme caution.**
+ * called and should therefore be used with extreme caution. The APIs required
+ * for it to function may not be available in browsers outside of workers.**
  *
  * Synchronously waits the provided `delay`, which may be expressed as a number
  * (of milliseconds) or as a string ('10 seconds'). Uses `Atomics.wait`, which
@@ -78,12 +72,16 @@ export default async function sleep<T = any>(delay: string | number, value?: T):
  * after `delay`.
  */
 sleep.sync = <T = any>(delay: string | number, value?: T) => {
+  if (typeof Atomics === 'undefined') throw new TypeError('[sleep.sync] The Atomics API is not available in this environment.');
+  if (typeof Atomics.wait === 'undefined') throw new TypeError('[sleep.sync] Atomics.wait is not available in this environment.');
+  if (typeof Int32Array === 'undefined') throw new TypeError('[sleep.sync] Int32Array is not available in this environment.');
+  if (typeof SharedArrayBuffer === 'undefined') throw new TypeError('[sleep.sync] SharedArrayBuffer is not available in this environment.');
+
+  // Note: The minimum byte length for this type of array is 4.
+  const TYPED_ARRAY = new Int32Array(new SharedArrayBuffer(4));
   Atomics.wait(TYPED_ARRAY, 0, 0, parseTime(delay));
 
-  if (value instanceof Error) {
-    throw value;
-  }
-
+  if (value instanceof Error) throw value;
   return value as FinalValue<T>;
 };
 
@@ -97,5 +95,5 @@ sleep.sync = <T = any>(delay: string | number, value?: T) => {
 export async function rejectAfter<T = any>(delay: string | number, value?: T) {
   await sleep(delay);
   // eslint-disable-next-line @typescript-eslint/no-throw-literal
-  throw value;
+  throw value as FinalValue<T>;
 }

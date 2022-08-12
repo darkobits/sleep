@@ -31,75 +31,65 @@ If a second parameter is provided, the following rules will be followed:
 ```ts
 import sleep from '@darkobits/sleep';
 
-async function main() {
-  // Wait for 5 seconds:
-  await sleep(5000);
+// Wait for 5 seconds:
+await sleep(5000);
 
-  // Or, wait for 5 seconds:
-  await sleep('5 seconds');
+// Or, wait for 5 seconds:
+await sleep('5 seconds');
 
-  // Or, wait for 5 seconds:
-  await sleep('5s');
+// Or, wait for 5 seconds:
+await sleep('5s');
 
-  // Or, wait for 5 seconds and resolve with a value:
-  const foo = await sleep('5 seconds', 'foo');
+// Or, wait for 5 seconds and resolve with a value:
+const foo = await sleep('5 seconds', 'foo');
 
-  // Or, wait for 5 seconds and reject with an error:
-  try {
-    await sleep('5s', new Error('Barnacles!'));
-  } catch (err) {
-    console.error(err.message) // 'Barnacles!'
-  }
+// Or, wait for 5 seconds and reject with an error:
+try {
+  await sleep('5s', new Error('Barnacles!'));
+} catch (err) {
+  console.error(err.message) // 'Barnacles!'
 }
 ```
 
 ## Synchronous Usage
 
-> **Warning**
->
-> If you need to pause execution of the entire program, please consider the following:
-> 1. You probably don't need to pause execution of the entire program.
-> 2. You probably don't want to pause execution of the entire program.
-> 3. You shouldn't pause execution of the entire program.
-
-That said, this package provides a means to do so without spiking CPU usage, as is the case with `while`
-loops. To use it, invoke `sleep.sync`, which takes the same arguments as its async variant, but does not
-return a promise.
+This package provides a means to pause execution of the main JavaScript thread using `SharedArrayBuffer`
+and `Atomics.wait`, which will not spike CPU usage like `while` loops and other approaches.
 
 ```ts
 import sleep from '@darkobits/sleep';
 
-function main() {
-  // Wait for 5 seconds:
-  sleep.sync(5000);
+// Wait for 5 seconds:
+sleep.sync(5000);
 
-  // Or, wait for 5 seconds:
-  sleep.sync('5 seconds');
+// Or, wait for 5 seconds:
+sleep.sync('5 seconds');
 
-  // Or, wait for 5 seconds:
-  sleep.sync('5s');
+// Or, wait for 5 seconds:
+sleep.sync('5s');
 
-  // Or, wait for 5 seconds and return a value:
-  const foo = sleep.sync('5 seconds', 'foo');
+// Or, wait for 5 seconds and return a value:
+const foo = sleep.sync('5 seconds', 'foo');
 
-  // Or, wait for 5 seconds and throw an error:
-  try {
-    sleep.sync('5s', new Error('Barnacles!'));
-  } catch (err) {
-    console.error(err.message) // 'Barnacles!'
-  }
+// Or, wait for 5 seconds and throw an error:
+try {
+  sleep.sync('5s', new Error('Barnacles!'));
+} catch (err) {
+  console.error(err.message) // 'Barnacles!'
 }
 ```
 
 ## Caveats
 
-The maximum timeout value that can be passed to `setTimeout` is `2_147_483_647` milliseconds; the
-maximum value that can be represented in a signed 32-bit integer. Passing a value larger than this will
-cause a `TimeoutOverflowWarning` and the timeout will be set to `1`. This value turns out to be just
-under 25 days, and is therefore far longer than any reasonable use should require. However, since this
-is primarily a tool for debugging and development, any timeout value that exceeds the maximum will be
-coerced to the maximum value so that things like `sleep(Infinity)` will not violate the
-[Principle of Least Astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment).
+- The APIs required for `sleep.sync` to work (specifically `SharedArrayBuffer`) may not be available in
+  all browser contexts. For more information, see [this article](https://blog.logrocket.com/understanding-sharedarraybuffer-and-cross-origin-isolation/).
+- The maximum timeout value that can be passed to `setTimeout` is `2_147_483_647` milliseconds; the
+  maximum value that can be represented in a signed 32-bit integer. Passing a value larger than this
+  will cause a `TimeoutOverflowWarning` and the timeout will be set to `1`. This value turns out to be
+  just under 25 days, and is therefore far longer than any reasonable use should require. However, since
+  this is primarily a tool for debugging and development, any timeout value that exceeds the maximum
+  will be coerced to the maximum value so that things like `sleep(Infinity)` will not violate the
+  [Principle of Least Astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment).
 
 <br />
 <a href="#top">
