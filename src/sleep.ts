@@ -78,9 +78,7 @@ sleep.sync = <T = any>(delay: string | number, value?: T) => {
   if (typeof SharedArrayBuffer === 'undefined') throw new TypeError('[sleep.sync] SharedArrayBuffer is not available in this environment.');
 
   // Note: The minimum byte length for this type of array is 4.
-  const TYPED_ARRAY = new Int32Array(new SharedArrayBuffer(4));
-  Atomics.wait(TYPED_ARRAY, 0, 0, parseTime(delay));
-
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, parseTime(delay));
   if (value instanceof Error) throw value;
   return value as FinalValue<T>;
 };

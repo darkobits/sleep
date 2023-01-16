@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "@darkobits/log": "^2.0.0-beta.16",
-    "@darkobits/ts": "^0.10.7-beta.4",
+    "@darkobits/ts": "^0.13.0",
     "@types/ms": "^0.7.31",
-    "expect-type": "^0.13.0"
+    "expect-type": "^0.15.0"
   }
 }
