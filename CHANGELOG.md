@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.3](https://github.com/darkobits/sleep/compare/v2.1.2...v2.1.3) (2023-01-16)
+
+
+### 📖 Documentation
+
+* Update README. ([c191fdd](https://github.com/darkobits/sleep/commit/c191fddf59ef6b490cee4df1f34a2844249bd4b1))
+
+
+### 🏗 Chores
+
+* **deps:** Update dependencies. ([426bc2f](https://github.com/darkobits/sleep/commit/426bc2f450c2024d4820bc52d094ff95b2878d8f))
+* Update ci.yml. ([0dcaca0](https://github.com/darkobits/sleep/commit/0dcaca0d7c1ba0016999c755cd67af5a23f8f6e0))
+
 ## [2.1.2](https://github.com/darkobits/sleep/compare/v2.1.1...v2.1.2) (2022-08-12)
 
 
