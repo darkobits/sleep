@@ -1,5 +1,15 @@
 import { expectTypeOf } from 'expect-type';
 import ms from 'ms';
+import {
+  describe,
+  it,
+  expect,
+  beforeAll,
+  beforeEach,
+  afterAll,
+  afterEach,
+  vi
+} from 'vitest';
 
 import sleep, { rejectAfter } from './sleep';
 
@@ -30,14 +40,14 @@ function mock<O extends object, K extends keyof O>(obj: O, key: K, mock?: any) {
 
 describe('sleep', () => {
   beforeAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   describe('delay values', () => {
     describe('when provided a string', () => {
       it('should resolve after the provided delay', async () => {
         const resultPromise = sleep(STRING_DELAY, VALUE);
-        jest.advanceTimersByTime(DELAY);
+        vi.advanceTimersByTime(DELAY);
         const result = await resultPromise;
         expect(result).toBe(VALUE);
       });
@@ -59,7 +69,7 @@ describe('sleep', () => {
       describe('that can be represented by a signed 32-bit integer', () => {
         it('should resolve after the provided delay', async () => {
           const resultPromise = sleep(DELAY, VALUE);
-          jest.advanceTimersByTime(DELAY);
+          vi.advanceTimersByTime(DELAY);
           const result = await resultPromise;
           expect(result).toBe(VALUE);
         });
@@ -68,7 +78,7 @@ describe('sleep', () => {
       describe('that cannot be represented by a signed 32-bit integer', () => {
         it('should use the largest possible value instead', async () => {
           const resultPromise = sleep(Number.MAX_SAFE_INTEGER, VALUE);
-          jest.advanceTimersByTime(MAX_SAFE_VALUE);
+          vi.advanceTimersByTime(MAX_SAFE_VALUE);
           const result = await resultPromise;
           expect(result).toBe(VALUE);
         });
@@ -84,7 +94,7 @@ describe('sleep', () => {
         // Ensure the promise we got back was correctly typed.
         expectTypeOf<UnwrapPromise<typeof resultPromise>>().toEqualTypeOf<typeof VALUE>();
 
-        jest.advanceTimersByTime(DELAY);
+        vi.advanceTimersByTime(DELAY);
         const result = await resultPromise;
         expect(result).toBe(VALUE);
       });
@@ -102,7 +112,7 @@ describe('sleep', () => {
           // Ensure the promise we got back was correctly typed.
           expectTypeOf<UnwrapPromise<typeof resultPromise>>().toEqualTypeOf<never>();
 
-          jest.advanceTimersByTime(DELAY);
+          vi.advanceTimersByTime(DELAY);
           await resultPromise;
         } catch (err) {
           expect(err).toEqual(rejectValue);
@@ -112,7 +122,7 @@ describe('sleep', () => {
   });
 
   afterAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 });
 
@@ -208,7 +218,7 @@ describe('sleep.sync', () => {
 
 describe('rejectAfter', () => {
   beforeAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   describe('when provided a string', () => {
@@ -217,7 +227,7 @@ describe('rejectAfter', () => {
 
       try {
         const resultPromise = rejectAfter(STRING_DELAY, ERR);
-        jest.advanceTimersByTime(DELAY);
+        vi.advanceTimersByTime(DELAY);
         await resultPromise;
       } catch (err) {
         expect(err).toBe(ERR);
@@ -232,7 +242,7 @@ describe('rejectAfter', () => {
 
         try {
           const resultPromise = rejectAfter(DELAY, ERR);
-          jest.advanceTimersByTime(DELAY);
+          vi.advanceTimersByTime(DELAY);
           await resultPromise;
         } catch (err) {
           expect(err).toBe(ERR);
@@ -246,7 +256,7 @@ describe('rejectAfter', () => {
 
         try {
           const resultPromise = rejectAfter(Number.MAX_SAFE_INTEGER + 100, ERR);
-          jest.advanceTimersByTime(MAX_SAFE_VALUE);
+          vi.advanceTimersByTime(MAX_SAFE_VALUE);
           await resultPromise;
         } catch (err) {
           expect(err).toBe(ERR);
@@ -256,6 +266,6 @@ describe('rejectAfter', () => {
   });
 
   afterAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 });
