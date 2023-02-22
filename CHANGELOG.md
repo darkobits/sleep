@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.4](https://github.com/darkobits/sleep/compare/v2.1.3...v2.1.4) (2023-02-22)
+
+
+### 🏗 Chores
+
+* **deps:** Update dependencies. ([3512608](https://github.com/darkobits/sleep/commit/3512608b7605c06ff7c6a8a1ca1d7be537000947))
+* Update `.ci.yml`. ([924a2b4](https://github.com/darkobits/sleep/commit/924a2b449779865f5e2cd65c0400501fc477885a))
+
+
+### 🛠 Refactoring
+
+* Publish as CommonJS. ([a8c179d](https://github.com/darkobits/sleep/commit/a8c179d1f83bc17d40a69189386939b94be5d12c))
+
 ## [2.1.3](https://github.com/darkobits/sleep/compare/v2.1.2...v2.1.3) (2023-01-16)
 
 
