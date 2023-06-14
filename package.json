@@ -22,7 +22,6 @@
   "main": "dist/sleep.js",
   "scripts": {
     "prepare": "nr prepare",
-    "test": "nr test",
     "help": "nr --scripts"
   },
   "dependencies": {
@@ -30,8 +29,8 @@
   },
   "devDependencies": {
     "@darkobits/log": "^2.0.0-beta.16",
-    "@darkobits/ts": "^0.14.13",
+    "@darkobits/ts": "^0.16.1",
     "@types/ms": "^0.7.31",
-    "expect-type": "^0.15.0"
+    "expect-type": "^0.16.0"
   }
 }
