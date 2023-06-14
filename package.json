@@ -3,7 +3,7 @@
   "version": "2.1.4",
   "description": "Async wait utility.",
   "author": "darkobits",
-  "license": "WTFPL",
+  "license": "Hippocratic",
   "repository": {
     "type": "git",
     "url": "https://github.com/darkobits/sleep.git"
