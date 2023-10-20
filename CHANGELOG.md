@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.5](https://github.com/darkobits/sleep/compare/v2.1.4...v2.1.5) (2023-10-20)
+
+
+### 🏗 Chores
+
+* **deps:** Update dependencies. ([ebe6aa0](https://github.com/darkobits/sleep/commit/ebe6aa0c37ff31e7155230c1bb238a6c4cc77a0e))
+* **deps:** Update dependencies. ([b5b2a7f](https://github.com/darkobits/sleep/commit/b5b2a7f51a40f47a9b3022958a90a7e9f2929cb1))
+* Update LICENSE. ([b2187bc](https://github.com/darkobits/sleep/commit/b2187bc4313ea6da704759e76fb051413ba75175))
+
 ## [2.1.4](https://github.com/darkobits/sleep/compare/v2.1.3...v2.1.4) (2023-02-22)
 
 
