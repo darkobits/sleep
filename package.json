@@ -4,6 +4,7 @@
   "description": "Async wait utility.",
   "author": "darkobits",
   "license": "Hippocratic",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/darkobits/sleep.git"
