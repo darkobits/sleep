@@ -1,6 +1,6 @@
 {
   "name": "@darkobits/sleep",
-  "version": "2.1.5",
+  "version": "3.0.0",
   "description": "Async wait utility.",
   "author": "darkobits",
   "license": "Hippocratic",

@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/darkobits/sleep/compare/v2.1.5...v3.0.0) (2023-10-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* This package is now published as ESM.
+
+### 🛠 Refactoring
+
+* Publish as ESM. ([f181fcb](https://github.com/darkobits/sleep/commit/f181fcbd5e8f6a5a44a0fbcd3af4b7a1fad2806a))
+
 ## [2.1.5](https://github.com/darkobits/sleep/compare/v2.1.4...v2.1.5) (2023-10-20)
 
 
